@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Wishlist</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Your Wishlist</h1>
+        <div class="row">
+            {% for stamp in wishlist %}
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/' + stamp.photo_filename) }}" class="card-img-top"
+                        alt="{{ stamp.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ stamp.name }}</h5>
+                        <p class="card-price">${{ stamp.coated_price }}</p>
+                        <p class="card-description">{{ stamp.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>

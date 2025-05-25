@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philatelist Dashboard</title>
+    <!-- Link to Google Fonts for Montserrat and Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Link to your CSS file using url_for -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_for_dash.css') }}">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-section">
+                <!-- Link to the image using url_for -->
+                <img src="{{ url_for('static', filename='India-Post_Preview.png') }}" alt="India Post Logo" class="logo">
+                <a href="{{ url_for('home') }}"><h1>National Philatelic Community</h1></a>
+            </div>
+            <ul class="nav-links">
+                <!-- Use url_for to link to different pages -->
+                <li><a href="{{ url_for('myprofile') }}">My Profile</a></li>
+                <li><a href="{{ url_for('create_npda') }}">Create NPDA Account</a></li>
+                <li><a href="{{ url_for('my_collection') }}">My Collection</a></li>
+                <li><a href="{{ url_for('settings2') }}">Settings</a></li>
+                <li><a href="{{ url_for('help_support') }}">Help & Support</a></li>
+            </ul>
+            <!-- Add form to handle logout -->
+            <form action="{{ url_for('logout') }}" method="post">
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </aside>
+
+        <div class="main-content">
+            <header class="dashboard-header">
+                <h2>Philatelist Dashboard</h2>
+                <p>Welcome, {{ username }} ({{ email }})</p>
+            </header>
+
+            <section class="profile-section">
+                <div class="profile-info">
+                    <!-- Link to the profile picture using url_for -->
+                    <img src="{{ url_for('static', filename='profile-placeholder.avif') }}" alt="Profile Picture" class="profile-img">
+                    <h3 class="profile-name">{{ username }}</h3>
+                    <p>Email: {{ email }}</p>
+                    <p>Membership Type: Non-NPDA member</p>
+                </div>
+
+                <div class="npda-section">
+                    <h3>Create NPDA Account</h3>
+                    <p>National Philatelic Database Account allows you to register and manage your philatelic collections and participate in events.</p>
+                    <button class="create-npda-btn">Create NPDA Account</button>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

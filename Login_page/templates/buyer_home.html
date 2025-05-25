@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stamp Collection</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        .carousel-inner img {
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .carousel {
+            margin-bottom: 30px;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .filter-dropdown {
+            margin-left: 20px;
+        }
+
+        .like-btn {
+            margin-right: 10px;
+            color: red;
+            cursor: pointer;
+        }
+
+        .purchase-btn {
+            background-color: rgb(9, 9, 143);
+            color: white;
+        }
+    </style>
+</head>
+
+<body style="background-color:whitesmoke ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">StampStore</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('orders')}}">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('wishlist') }}">Wishlist</a>
+                    </li>
+                </ul>
+                <form class="d-flex" action="/search" method="GET">
+                    <input class="form-control me-2" type="search" name="search" placeholder="Search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <div class="dropdown filter-dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Filter
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                        <li><a class="dropdown-item" href="#">Price: Low to High</a></li>
+                        <li><a class="dropdown-item" href="#">Price: High to Low</a></li>
+                        <li><a class="dropdown-item" href="#">Year: Old to New</a></li>
+                        <li><a class="dropdown-item" href="#">Year: New to Old</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carousel for Recently Uploaded Stamps -->
+    <div class="container">
+        <div id="carouselExampleControls" class="carousel slide mt-4" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for stamp in stamps %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <img src="{{ url_for('static', filename='uploads/' + stamp.photo_filename) }}" class="d-block w-100"
+                        alt="{{ stamp.name }}">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>{{ stamp.name }}</h5>
+                        <p>${{ stamp.coated_price }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if stamps|length > 1 %}
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Stamp Collection -->
+    <div class="container">
+        <h1>Stamp Collection</h1>
+        <div class="row">
+            {% for stamp in stamps %}
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='uploads/' + stamp.photo_filename) }}" class="card-img-top"
+                        alt="{{ stamp.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ stamp.name }}</h5>
+                        <p class="card-price">${{ stamp.coated_price }}</p>
+                        <p class="card-description">{{ stamp.description }}</p>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="like-btn" onclick="likeStamp('{{ stamp.id }}')">❤️</span>
+                            <div class="red_button add_to_cart_button">
+                                <a href="{{ url_for('purchase',stamp_id=stamp.id) }}">Purchase</a>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Remove the other Bootstrap JS link -->
+    <!-- Footer -->
+    <footer class="bg-dark text-white mt-4">
+        <div class="container py-4">
+            <div class="row">
+                <!-- Contact Info -->
+                <div class="col-md-4 mb-3">
+                    <h5>Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-geo-alt"></i> 123 Stamp Street, Stamp City, ST 12345</li>
+                        <li><i class="bi bi-envelope"></i> info@stampstore.com</li>
+                        <li><i class="bi bi-phone"></i> +1 (123) 456-7890</li>
+                    </ul>
+                </div>
+
+                <!-- Useful Links -->
+                <div class="col-md-4 mb-3">
+                    <h5>Useful Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Home</a></li>
+                        <li><a href="#" class="text-white">About Us</a></li>
+                        <li><a href="#" class="text-white">Services</a></li>
+                        <li><a href="#" class="text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Media -->
+                <div class="col-md-4 mb-3">
+                    <h5>Follow Us</h5>
+                    <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i> Facebook</a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i> Twitter</a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i> Instagram</a>
+                    <a href="#" class="text-white"><i class="bi bi-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">© 2024 StampStore. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_for_events.css') }}">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-section">
+                <img src="{{ url_for('static', filename='India-Post_Preview.png') }}" alt="India Post Logo" class="logo">
+                <h1>Postal Circle Dashboard</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('postal_circle_dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('manage_stamps') }}">Manage Stamps</a></li>
+                <li><a href="{{ url_for('events') }}" class="active">Events</a></li>
+                <li><a href="{{ url_for('settings') }}">Settings</a></li>
+                <li><a href="{{ url_for('help_support') }}">Help & Support</a></li>
+            </ul>
+            <form action="{{ url_for('logout') }}" method="post">
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </aside>
+
+        <div class="main-content">
+            <header class="dashboard-header">
+                <h2>Events</h2>
+            </header>
+
+            <section class="events-section">
+                <h3>Add New Event</h3>
+                <!-- Form action updated to '/add_event' route -->
+                <form id="addEventForm" action="{{ url_for('add_event') }}" method="POST">
+                    <label for="eventName">Event Name</label>
+                    <input type="text" id="eventName" name="eventName" placeholder="Enter event name" required>
+
+                    <label for="eventDate">Event Date</label>
+                    <input type="date" id="eventDate" name="eventDate" required>
+
+                    <label for="eventLocation">Location</label>
+                    <input type="text" id="eventLocation" name="eventLocation" placeholder="Enter event location" required>
+
+                    <label for="eventDescription">Description</label>
+                    <textarea id="eventDescription" name="eventDescription" placeholder="Enter event description" rows="4" required></textarea>
+
+                    <button type="submit" class="submit-button">Add Event</button>
+                </form>
+
+                <h3>Update or Delete Existing Events</h3>
+
+<!-- Form for updating an event -->
+<form id="updateEventForm" action="{{ url_for('update_event') }}" method="POST">
+    <label for="existingEvents">Select Event</label>
+    <select id="existingEvents" name="existingEvents" required>
+        <!-- Options will be dynamically populated -->
+    </select>
+
+    <label for="updateEventName">Event Name</label>
+    <input type="text" id="updateEventName" name="updateEventName" placeholder="Enter new name">
+
+    <label for="updateEventDate">Event Date</label>
+    <input type="date" id="updateEventDate" name="updateEventDate">
+
+    <label for="updateEventLocation">Location</label>
+    <input type="text" id="updateEventLocation" name="updateEventLocation" placeholder="Enter new location">
+
+    <label for="updateEventDescription">Description</label>
+    <textarea id="updateEventDescription" name="updateEventDescription" placeholder="Enter new description" rows="4"></textarea>
+
+    <button type="submit" class="submit-button">Update Event</button>
+</form>
+
+<!-- Separate form for deleting an event -->
+<form id="deleteEventForm" action="{{ url_for('delete_event') }}" method="POST">
+    <input type="hidden" id="deleteEventId" name="eventId" value="">
+    <button type="submit" class="submit-button" style="background-color: #dc3545;">Delete Event</button>
+</form>
+
+
+            </section>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script_for_events.js') }}"></script>
+        
+</body>
+</html>

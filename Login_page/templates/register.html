@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Philatelic Community Registration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles2.css') }}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Hide both registration forms initially
+      $('.tab-content').hide();
+
+      // Show Philatelist registration form when the Philatelist button is clicked
+      $('#philatelist-btn').click(function() {
+        $('#postalcircle-content').hide(); // Hide Postal Circle form
+        $('#philatelist-content').show();  // Show Philatelist form
+      });
+
+      // Show Postal Circle registration form when the Postal Circle button is clicked
+      $('#postalcircle-btn').click(function() {
+        $('#philatelist-content').hide();  // Hide Philatelist form
+        $('#postalcircle-content').show(); // Show Postal Circle form
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-content">
+        <img src="../static/India-Post_Preview.png" alt="India Post Logo" class="logo">
+        <h1>National Philatelic Community</h1>
+      </div>
+    </header>
+
+    <div class="selection-panel">
+      <h2>Select Your Registration Type</h2>
+      <div class="button-group">
+        <button class="user-button" id="philatelist-btn">Philatelist</button>
+        <button class="user-button" id="postalcircle-btn">Postal Circle</button>
+      </div>
+    </div>
+
+    <!-- Registration Forms -->
+    <div class="registration-panel">
+      <!-- Philatelist Registration Form -->
+      <div class="tab-content" id="philatelist-content">
+        <h3>Philatelist Registration</h3>
+        <form action="{{ url_for('register_philatelist') }}" method="POST">
+          <input type="text" class="input-field" name="username" placeholder="Username" required>
+          <input type="email" class="input-field" name="email" placeholder="Email" required>
+          <input type="password" class="input-field" name="password" placeholder="Password" required>
+          <button class="submit-button" type="submit">Register</button>
+        </form>
+      </div>
+
+      <!-- Postal Circle Registration Form -->
+      <div class="tab-content" id="postalcircle-content">
+        <h3>Postal Circle Registration</h3>
+        <form action="{{ url_for('register_postalcircle') }}" method="POST">
+          <select class="input-field" name="postal_circle" required>
+            <option value="" disabled selected>Select Postal Circle</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <!-- Add more postal circles -->
+          </select>
+          <input type="text" class="input-field" name="username" placeholder="Username" required>
+          <input type="email" class="input-field" name="email" placeholder="Email" required>
+          <input type="password" class="input-field" name="password" placeholder="Password" required>
+          <button class="submit-button" type="submit">Register</button>
+        </form>
+      </div>
+    </div>
+
+    
+</body>
+</html>

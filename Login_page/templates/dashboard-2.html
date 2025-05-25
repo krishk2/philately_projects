@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postal Circle Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_for_dash2.css') }}">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-section">
+                <img src="{{ url_for('static', filename='India-Post_Preview.png') }}" alt="India Post Logo" class="logo">
+                <h1>Postal Circle Dashboard</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('postal_circle_dashboard') }}" class="active">Dashboard</a></li>
+                <li><a href="{{ url_for('stamps') }}">Manage Stamps</a></li>
+                <li><a href="{{ url_for('events') }}">Events</a></li>
+                <li><a href="{{ url_for('settings') }}">Settings</a></li>
+                <li><a href="{{ url_for('help_support') }}">Help & Support</a></li>
+            </ul>
+            <form action="{{ url_for('logout') }}" method="post">
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </aside>
+
+        <div class="main-content">
+            <header class="dashboard-header">
+                <h2>Welcome to Your Dashboard</h2>
+            </header>
+
+            <section class="post-update-section">
+                <h3>Post New Updates</h3>
+                <form id="updateForm">
+                    <label for="updateType">Select Update Type</label>
+                    <select id="updateType" name="updateType" required>
+                        <option value="newRelease">New Stamp Release</option>
+                        <option value="cancellation">Cancellation</option>
+                        <option value="fdc">FDC</option>
+                        <option value="souvenir">Souvenir Sheet</option>
+                        <option value="event">Event</option>
+                    </select>
+
+                    <label for="updateTitle">Title</label>
+                    <input type="text" id="updateTitle" name="updateTitle" placeholder="Enter title" required>
+
+                    <label for="updateContent">Content</label>
+                    <textarea id="updateContent" name="updateContent" rows="5" placeholder="Enter content" required></textarea>
+
+                    <button type="submit" class="submit-button">Post Update</button>
+                </form>
+            </section>
+
+            <section class="stock-update-section">
+                <h3>Update Stamp Store Stock</h3>
+                <form id="stockForm">
+                    <label for="item">Item</label>
+                    <input type="text" id="item" name="item" placeholder="Enter item name" required>
+
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" name="quantity" placeholder="Enter quantity" required>
+
+                    <button type="submit" class="submit-button">Update Stock</button>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script_for_dash2.js') }}"></script>
+</body>
+</html>

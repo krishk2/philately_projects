@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Stamps</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_for_stamps.css') }}">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-section">
+                <img src="{{ url_for('static', filename='India-Post_Preview.png') }}" alt="India Post Logo" class="logo">
+                <h1>Postal Circle Dashboard</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('postal_circle_dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('stamps') }}" class="active">Manage Stamps</a></li>
+                <li><a href="{{ url_for('events') }}">Events</a></li>
+                <li><a href="{{ url_for('settings') }}">Settings</a></li>
+                <li><a href="{{ url_for('help_support') }}">Help & Support</a></li>
+            </ul>
+            <form action="{{ url_for('logout') }}" method="post">
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </aside>
+
+        <div class="main-content">
+            <header class="dashboard-header">
+                <h2>Manage Stamps</h2>
+            </header>
+
+            <section class="manage-stamps-section">
+                <h3>Add New Stamp</h3>
+                <form id="addStampForm" method="post" enctype="multipart/form-data" action="{{ url_for('manage_stamps') }}">
+                    <label for="stampName">Stamp Name</label>
+                    <input type="text" id="stampName" name="stampName" placeholder="Enter stamp name" required>
+
+                    <label for="stampYear">Year of Issue</label>
+                    <input type="number" id="stampYear" name="stampYear" placeholder="Enter year of issue" required>
+
+                    <label for="stampPrice">Price</label>
+                    <input type="number" step="0.01" id="stampPrice" name="stampPrice" placeholder="Enter stamp price" required>
+
+                    <label for="stampImage">Upload Image</label>
+                    <input type="file" id="stampImage" name="stampImage" accept="image/*">
+
+                    <button type="submit" class="submit-button">Add Stamp</button>
+                </form>
+
+                <h3>Update or Delete Existing Stamps</h3>
+                <form id="updateStampForm" method="post">
+                    <label for="existingStamps">Select Stamp</label>
+                    <select id="existingStamps" name="existingStamps" required>
+                        <!-- Options will be dynamically populated -->
+                    </select>
+
+                    <label for="updateStampName">Stamp Name</label>
+                    <input type="text" id="updateStampName" name="updateStampName" placeholder="Enter new name">
+
+                    <label for="updateStampYear">Year of Issue</label>
+                    <input type="number" id="updateStampYear" name="updateStampYear" placeholder="Enter new year of issue">
+
+                    <label for="updateStampPrice">Price</label>
+                    <input type="number" step="0.01" id="updateStampPrice" name="updateStampPrice" placeholder="Enter new price">
+
+                    <button type="submit" class="submit-button">Update Stamp</button>
+                    <button type="button" id="deleteStampButton" class="submit-button" style="background-color: #dc3545;">Delete Stamp</button>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

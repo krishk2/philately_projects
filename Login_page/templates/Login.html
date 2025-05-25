@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Philatelic Community Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-content">
+        <img src="../static/India-Post_Preview.png" alt="India Post Logo" class="logo">
+        <h1>National Philatelic Community</h1>
+      </div>
+    </header>
+
+    <div class="selection-panel">
+      <h2>Select Your User Type</h2>
+      <div class="button-group">
+        <button class="user-button" id="philatelist-btn">
+          <span class="icon">🖼️</span> Philatelist
+        </button>
+        <button class="user-button" id="postalcircle-btn">
+          <span class="icon">📬</span> Postal Circle
+        </button>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <!-- Philatelists Tab -->
+      <div class="tab-content" id="philatelists-content" style="display:none;">
+        <h3>Philatelists Login</h3>
+        <form action="{{ url_for('login_philatelists') }}" method="POST">
+          <input type="text" class="input-field" name="username" placeholder="Username" required>
+          <input type="password" class="input-field" name="password" placeholder="Password" required>
+          <button class="submit-button" type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+      </div>
+
+      <!-- Postal Circles Tab -->
+      <div class="tab-content" id="postalcircles-content" style="display:none;">
+        <h3>Postal Circles Login</h3>
+        <form action="{{ url_for('login_postalcircles') }}" method="POST">
+          <select class="input-field" name="postal_circle" required>
+            <option value="" disabled selected>Select Postal Circle</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <!-- Add more postal circles -->
+          </select>
+          <input type="text" class="input-field" name="username" placeholder="Username" required>
+          <input type="password" class="input-field" name="password" placeholder="Password" required>
+          <button class="submit-button" type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Connecting Philatelists and Postal Services across India</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

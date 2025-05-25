@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Stamp Museum</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #8B0000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        /* Main content */
+        .museum-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .stamp-collection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 20px;
+        }
+
+        .stamp {
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .stamp:hover {
+            transform: scale(1.05);
+        }
+
+        .stamp img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .stamp h3 {
+            margin: 10px 0 5px;
+            font-size: 1.2em;
+            color: #8B0000;
+        }
+
+        .stamp p {
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: #8B0000;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 10px 15px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-top:hover {
+            background-color: #B22222;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .stamp-collection {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Indian Stamp Museum</h1>
+    <p>Explore the rich history of India through its stamps</p>
+</header>
+
+<div class="museum-container">
+    <h2>Featured Stamps</h2>
+    <div class="stamp-collection">
+        <!-- Stamp 1 -->
+        <div class="stamp">
+            <img src="stamp1.jpg" alt="Stamp 1">
+            <h3>Stamp 1: Mahatma Gandhi</h3>
+            <p>This stamp honors the father of the nation, Mahatma Gandhi, with an iconic image of him spinning the charkha.</p>
+        </div>
+
+        <!-- Stamp 2 -->
+        <div class="stamp">
+            <img src="stamp2.jpg" alt="Stamp 2">
+            <h3>Stamp 2: Indian Independence</h3>
+            <p>This stamp commemorates India's independence from British rule in 1947.</p>
+        </div>
+
+        <!-- Stamp 3 -->
+        <div class="stamp">
+            <img src="stamp3.jpg" alt="Stamp 3">
+            <h3>Stamp 3: Taj Mahal</h3>
+            <p>A beautiful stamp showcasing the world-famous monument, the Taj Mahal, a symbol of India's rich heritage.</p>
+        </div>
+
+        <!-- Stamp 4 -->
+        <div class="stamp">
+            <img src="stamp4.jpg" alt="Stamp 4">
+            <h3>Stamp 4: Indian Railways</h3>
+            <p>This stamp celebrates the vast and historical Indian railway system, a lifeline of the nation.</p>
+        </div>
+
+        <!-- Add more stamps as needed -->
+    </div>
+</div>
+
+<footer>
+    <p>© 2024 Indian Stamp Museum. All Rights Reserved.</p>
+</footer>
+
+<!-- Scroll to top button -->
+<button class="scroll-top" onclick="scrollToTop()">↑</button>
+
+<script>
+    // Scroll to top functionality
+    window.onscroll = function() {
+        var scrollTopBtn = document.querySelector('.scroll-top');
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollTopBtn.style.display = 'block';
+        } else {
+            scrollTopBtn.style.display = 'none';
+        }
+    };
+
+    function scrollToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+
+</body>
+</html>

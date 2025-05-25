@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Philatelic Community</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_for_home.css') }}">
+</head>
+<body>
+
+<!-- Header with Login/Register -->
+<header class="header">
+    <h1>National Philatelic Community</h1>
+    <p class="tagline">Uniting Philatelists Across the Nation</p>
+    <div class="auth-links">
+        <a href="{{ url_for('login') }}">Login</a> / <a href="{{ url_for('register') }}">Register</a>
+    </div>
+</header>
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('stamp_store') }}">Stamp Store</a></li>
+        <li><a href="{{ url_for('forums') }}">Forums</a></li>
+        <li><a href="{{ url_for('philately_crash_course') }}">Philately Crash Course</a></li>
+        <li><a href="{{ url_for('stamp_mela') }}">Stamp Mela</a></li>
+        <li><a href="{{ url_for('stamp_museum') }}">Stamp Museum</a></li>
+    </ul>
+</nav>
+
+<!-- Carousel Slider Section -->
+<section class="carousel-section">
+    <h2>On-Demand Stamps and Ancillaries</h2>
+    <div class="carousel-container">
+        <button class="carousel-btn prev-btn">&#10094;</button>
+        <div class="carousel">
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='wild.jpg') }}" alt="Commemorative Stamp">
+                <h3>Commemorative Stamp on Wildlife Conservation</h3>
+                <p>This stamp celebrates the efforts in wildlife preservation. Limited edition release.</p>
+                <button class="buy-now">Buy Now</button>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='fest.jpg') }}" alt="First Day Cover">
+                <h3>First Day Cover - Indian Festivals</h3>
+                <p>A beautiful FDC showcasing the rich cultural heritage of Indian festivals.</p>
+                <button class="buy-now">Buy Now</button>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='cancellation.jpg') }}" alt="Special Cancellation">
+                <h3>Special Cancellation - Freedom Fighters</h3>
+                <p>Special postal cancellations commemorating India's freedom fighters.</p>
+                <button class="buy-now">Buy Now</button>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='monuments.jpg') }}" alt="Historic Monuments Stamp">
+                <h3>Special Stamp - Historic Monuments</h3>
+                <p>Featuring iconic monuments like the Taj Mahal, Qutub Minar, and more.</p>
+                <button class="buy-now">Buy Now</button>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='art.jpg') }}" alt="Traditional Art Stamp">
+                <h3>Traditional Indian Art Stamps</h3>
+                <p>Beautiful stamps showcasing various traditional art forms of India.</p>
+                <button class="buy-now">Buy Now</button>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='bird.jpg') }}" alt="Birds of India Stamp">
+                <h3>Birds of India Stamp Series</h3>
+                <p>A vibrant series of stamps depicting India's diverse bird species.</p>
+                <button class="buy-now">Buy Now</button>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='yuri.jpg') }}" alt="Space Exploration Stamp">
+                <h3>Space Exploration Stamps</h3>
+                <p>Exploring the final frontier with stamps depicting India's achievements in space.</p>
+                <button class="buy-now">Buy Now</button>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='wild.webp') }}" alt="Wildlife Conservation Stamp Series">
+                <h3>Wildlife Conservation Stamp Series</h3>
+                <p>Support wildlife conservation efforts with this special stamp series.</p>
+                <button class="buy-now">Buy Now</button>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='famous.jpg') }}" alt="Famous Personalities Stamp Series">
+                <h3>Famous Personalities Stamp Series</h3>
+                <p>A tribute to renowned personalities who have shaped India's history and culture.</p>
+                <button class="buy-now">Buy Now</button>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='festi.jpg') }}" alt="Festivals of India Stamp Series">
+                <h3>Festivals of India Stamp Series</h3>
+                <p>Experience the vibrant festivals of India through this colorful stamp series.</p>
+                <button class="buy-now">Buy Now</button>
+            </div>
+        </div>
+        <button class="carousel-btn next-btn">&#10095;</button>
+    </div>
+</section>
+
+<!-- Philately Updates Section -->
+<div class="tabs-container">
+    <!-- Tab buttons as radio inputs -->
+    <input type="radio" name="tabs" id="tab-upcoming" checked>
+    <label for="tab-upcoming" class="tab-label">Upcoming Stamp Releases</label>
+
+    <input type="radio" name="tabs" id="tab-events">
+    <label for="tab-events" class="tab-label">Philatelic Events</label>
+
+    <input type="radio" name="tabs" id="tab-news">
+    <label for="tab-news" class="tab-label">Latest Philately News</label>
+
+    <!-- Tab content sections -->
+    <div class="tab-content" id="upcoming-releases">
+        <h2>Upcoming Stamp Releases</h2>
+        <div class="news-item">
+            <span class="date">(20.09.2024)</span>
+            <span class="postal-circle">Western Postal Circle</span> - 
+            <a href="#">Release of Commemorative Stamp on Wildlife Conservation</a>
+        </div>
+        <div class="news-item">
+            <span class="date">(15.10.2024)</span>
+            <span class="postal-circle">Southern Postal Circle</span> - 
+            <a href="#">Launch of Special Stamp Series on Indian Festivals</a>
+        </div>
+    </div>
+
+    <div class="tab-content" id="events">
+        <h2>Philatelic Events</h2>
+        <!-- <div class="news-item">
+            <span class="date">(06.07.2024)</span>
+            <a href="#">National Philately Exhibition in New Delhi</a>
+        </div>
+        <div class="news-item">
+            <span class="date">(26.02.2024)</span>
+            <a href="#">Workshop on Stamp Collecting Techniques</a>
+        </div> -->
+        <section class="events">
+            <h2>Upcoming Events</h2>
+
+            <!-- Loop through the events passed to this template -->
+            {% if events %}
+                <ul>
+                    {% for event in events %}
+                        <li>
+                            <h3>{{ event.name }}</h3>
+                            <p><strong>Date:</strong> {{ event.date }}</p>
+                            <p><strong>Location:</strong> {{ event.location }}</p>
+                            <p>{{ event.description }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No events available at the moment.</p>
+            {% endif %}
+        </section>
+    </div>
+
+    <div class="tab-content" id="latest-news">
+        <h2>Latest Philately News</h2>
+        <div class="news-item">
+            <span class="date">(01.09.2024)</span>
+            <a href="#">India Post Announces New Series of Stamps Featuring Freedom Fighters</a>
+        </div>
+        <div class="news-item">
+            <span class="date">(18.08.2024)</span>
+            <a href="#">Rare Stamps Collection Displayed at International Philatelic Expo</a>
+        </div>
+    </div>
+</div>
+
+<!-- NPDA Account Prompt -->
+<section class="npda-account">
+    <p>Don't you have an NPDA account? <button class="create-account">Create One</button></p>
+</section>
+
+<!-- Search Section -->
+<section class="search-section">
+    <p>Looking for a particular stamp?</p>
+    <input type="text" placeholder="Search for stamps...">
+    <button class="search-button">Search</button>
+</section>
+
+<!-- Bot Icon -->
+<div class="chatbot-icon-container" id="chatbotIcon">
+    <img src="{{ url_for('static', filename='bot.jpg') }}" alt="Chatbot Icon" class="chatbot-icon">
+</div>
+
+<div class="chatbot-interface-container" id="chatbotInterface">
+    <div class="chatbot-header">
+        <h3>Chatbot</h3>
+        <button id="closeChatbot">✖</button>
+    </div>
+    <div id="chat-log">
+        <p>Hi there! Need help with anything?</p>
+    </div>
+    <input type="text" id="user-input" placeholder="Ask me something...">
+    <button id="send-button">Send</button>
+</div>
+
+<!-- Footer Section -->
+<footer class="footer">
+    <ul class="footer-links">
+        <li><a href="https://www.indiapost.gov.in/">India Post</a></li>
+        <li><a href="https://postagestamps.gov.in/">Postage Stamps of India</a></li>
+        <li><a href="#">National Philatelic Museum</a></li>
+        <li><a href="#">International Philatelic Federation</a></li>
+        <li><a href="#">Stamp Collecting Basics</a></li>
+    </ul>
+</footer>
+
+<script src="{{ url_for('static', filename='script_for_home.js') }}"></script>
+
+
+</body>
+</html>
